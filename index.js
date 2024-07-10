@@ -84,9 +84,11 @@ async function addSocket({id, pair, limit, interval}, {askPersent, bidPersent}) 
             console.log(`Close socket`)
             delete sockets[`${id}`];
             clearInterval(intervalId);
-            if(sockets[id]) {
+            // if(sockets[id]) {
+            setTimeout(() => {
                 addSocket({id, pair, limit, interval}, {askPersent, bidPersent});
-            }
+            }, 2000);
+            // }
         });
 
         ws.addEventListener("message", (event) => {
